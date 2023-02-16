@@ -27,7 +27,7 @@ const exec = (context) => check(context) && (
   async () => {
     try {
       console.log('context:', context)
-      if(context.trimmedText === 'me') {
+      if(context.event.message.text.includes('me')) {
         const userObj = await fetchUser(context.userId);
         const userText = JSON.stringify(userObj)
         context.pushText(userText, []);
