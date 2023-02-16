@@ -12,6 +12,8 @@ import {
   retryHandler,
   talkHandler,
   versionHandler,
+
+  lineUtilsHandler,
 } from './handlers/index.js';
 import Context from './context.js';
 import Event from './event.js';
@@ -33,6 +35,7 @@ const handleContext = async (context) => (
   || retryHandler(context)
   || versionHandler(context)
   || talkHandler(context)
+  || lineUtilsHandler(context)
   || context
 );
 

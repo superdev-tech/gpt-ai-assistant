@@ -31,7 +31,11 @@ import COMMAND_SYS_VERSION from './sys-version.js';
 import COMMAND_TRANSLATE_TO_EN from './translate-to-en.js';
 import COMMAND_TRANSLATE_TO_JA from './translate-to-ja.js';
 
+// add new command
+import COMMAND_LINE_UTILS from './line-utils.js';
+
 export const ALL_COMMANDS = [
+  COMMAND_LINE_UTILS,
   COMMAND_ANALYZE_ANALYZE,
   COMMAND_ANALYZE_LITERARILY,
   COMMAND_ANALYZE_MATHEMATICALLY,
@@ -87,6 +91,8 @@ export const ENQUIRE_COMMANDS = ALL_COMMANDS.filter(({ type }) => (
 ));
 
 export {
+  COMMAND_LINE_UTILS,
+  
   COMMAND_ANALYZE_ANALYZE,
   COMMAND_ANALYZE_LITERARILY,
   COMMAND_ANALYZE_MATHEMATICALLY,
