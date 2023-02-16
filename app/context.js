@@ -106,7 +106,11 @@ class Context {
     console.log('userId:', this.userId)
     console.log('hasIncludes:', config.LINE_USERS_WHITELIST.includes(this.userId))
 
-    if (!config.LINE_USERS_WHITELIST.includes(this.userId) && !sources[this.userId] && users.length >= config.APP_MAX_USERS) {
+    if (!config.LINE_USERS_WHITELIST.includes(this.userId)) {
+      throw new Error('Unauthorized, you are not on the whitelist.');
+    }
+
+    if (!sources[this.userId] && users.length >= config.APP_MAX_USERS) {
       throw new Error(t('__ERROR_MAX_USERS_REACHED'));
     }
   }
