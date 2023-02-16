@@ -25,9 +25,13 @@ steps:
       - --cache-ttl=48h
       - --build-arg
       - OPENAI_API_KEY=$_OPENAI_API_KEY
+      - --build-arg
       - LINE_CHANNEL_ACCESS_TOKEN=$_LINE_CHANNEL_ACCESS_TOKEN
+      - --build-arg
       - LINE_CHANNEL_SECRET=$_LINE_CHANNEL_SECRET
+      - --build-arg
       - APP_LANG=$_APP_LANG
+      - --build-arg
       - APP_PORT=$_APP_PORT
 
   # Deploy container image to Cloud Run
