@@ -27,10 +27,8 @@ const exec = (context) => check(context) && (
   async () => {
     try {
       console.log('context:', context)
-      if(context.event.message.text.includes('me')) {
-        const userObj = await fetchUser(context.userId);
-        const userText = JSON.stringify(userObj)
-        context.pushText(userText, []);
+      if(context.event.message.text.includes('myid')) {
+        context.pushText(context.userId, []);
       }else {
         context.pushText('Line commands has incorrect', []);
       }

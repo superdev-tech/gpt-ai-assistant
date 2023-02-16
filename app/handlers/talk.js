@@ -25,6 +25,11 @@ const exec = (context) => check(context) && (
     const prompt = getPrompt(context.userId);
     prompt.write(PARTICIPANT_HUMAN, `${context.trimmedText}？`).write(PARTICIPANT_AI);
     try {
+
+      if (!config.LINE_USERS_WHITELIST.includes(context.userId)) {
+        throw new Error('Unauthorized, you are not on the whitelist.');
+      }
+
       const { text, isFinishReasonStop } = await generateCompletion({ prompt: prompt.toString() });
       prompt.patch(text);
       setPrompt(context.userId, prompt);
