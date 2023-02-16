@@ -102,8 +102,10 @@ class Context {
     }
 
     console.log('validate')
-    console.log('users:', users)
-    console.log('groups:', groups)
+    console.log('LINE_USERS_WHITELIST:', config.LINE_USERS_WHITELIST)
+    console.log('userId:', this.userId)
+    console.log('hasIncludes:', config.LINE_USERS_WHITELIST.includes(this.userId))
+
     if (!sources[this.userId] && users.length >= config.APP_MAX_USERS) {
       throw new Error(t('__ERROR_MAX_USERS_REACHED'));
     }

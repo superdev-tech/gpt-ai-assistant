@@ -37,6 +37,8 @@ steps:
       - OPENAI_TIMEOUT=$_OPENAI_TIMEOUT
       - --build-arg
       - LINE_TIMEOUT=$_LINE_TIMEOUT
+      - --build-arg
+      - LINE_USERS_WHITELIST=$_LINE_USERS_WHITELIST
 
   # Deploy container image to Cloud Run
   - id: 'deploy_registry_to_cloudrun'

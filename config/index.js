@@ -32,6 +32,8 @@ const config = Object.freeze({
   LINE_TIMEOUT: env.LINE_TIMEOUT || 9000,
   LINE_CHANNEL_ACCESS_TOKEN: env.LINE_CHANNEL_ACCESS_TOKEN || null,
   LINE_CHANNEL_SECRET: env.LINE_CHANNEL_SECRET || null,
+
+  LINE_USERS_WHITELIST: env.LINE_USERS_WHITELIST,
 });
 
 export default config;
