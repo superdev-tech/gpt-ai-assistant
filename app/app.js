@@ -24,6 +24,7 @@ import Event from './event.js';
  */
 const handleContext = async (context) => (
   activateHandler(context)
+  || lineUtilsHandler(context)
   || commandHandler(context)
   || continueHandler(context)
   || deactivateHandler(context)
@@ -35,7 +36,6 @@ const handleContext = async (context) => (
   || retryHandler(context)
   || versionHandler(context)
   || talkHandler(context)
-  || lineUtilsHandler(context)
   || context
 );
 
