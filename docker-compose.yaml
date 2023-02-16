@@ -3,7 +3,14 @@ version: "3"
 services:
   app:
     container_name: gpt-ai-assistant
-    build: .
+    build:
+      context: .
+      args:
+        - OPENAI_API_KEY='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'
+        - LINE_CHANNEL_ACCESS_TOKEN='3hunnrItewQUQEsmgFABP2i7FKBACIoe4lltTsE6LC2sG5OnqJM8jWWKMF5vZBKtQ0XMp8xZR9KVguyNviMsQ3YfAu8295rxL5JsCrm98Pwo40a84P5++hQlfxIGnA8RxZLh4RkKuflS8q8P+Ms/egdB04t89/1O/w1cDnyilFU='
+        - LINE_CHANNEL_SECRET='ed2ab084b84ddf3d0ddc821fbbac6662'
+        - APP_LANG=en
+        - APP_PORT=3000
     restart: always
     ports:
-      - "${APP_PORT}:${APP_PORT}"
+      - "3000:3000"

@@ -1,0 +1,58 @@
+#if you need to use submodule please follow this link (https://cloud.google.com/build/docs/access-github-from-build)
+steps:
+  # stop before build
+  - id: 'stop_before_build'
+    name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        on_going_build=($(gcloud builds list --ongoing --format='value(id)' --filter="substitutions.TRIGGER_NAME=$TRIGGER_NAME" | xargs))
+        for (( i=0; i<${#on_going_build[@]}; i++ )); do
+          if [ "$i" -gt "0" ]; then # skip current
+            echo "Cancelling build ${on_going_build[i]}"
+
+            gcloud builds cancel ${on_going_build[i]}
+          fi
+        done
+
+  # build the container image
+  - id: 'build_container'
+    name: 'gcr.io/kaniko-project/executor:latest'
+    args:
+      - --destination=gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME
+      - --cache=true
+      - --cache-ttl=48h
+      - --build-arg
+      - OPENAI_API_KEY=$_OPENAI_API_KEY
+      - LINE_CHANNEL_ACCESS_TOKEN=$_LINE_CHANNEL_ACCESS_TOKEN
+      - LINE_CHANNEL_SECRET=$_LINE_CHANNEL_SECRET
+      - APP_LANG=$_APP_LANG
+      - APP_PORT=$_APP_PORT
+
+  # Deploy container image to Cloud Run
+  - id: 'deploy_registry_to_cloudrun'
+    name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'beta',
+        'run',
+        'deploy',
+        '$REPO_NAME-$BRANCH_NAME',
+        '--image',
+        'gcr.io/$PROJECT_ID/$REPO_NAME-$BRANCH_NAME',
+        '--region',
+        'asia-southeast1',
+        '--platform',
+        'managed',
+        '--port',
+        '3000',
+        # '--vpc-connector',      # set vpc connector for connecting to DB with private ip
+        # 'superdev-vpc',
+        '--quiet',
+      ]
+
+timeout: 2000s
+# options:
+#   machineType: 'N1_HIGHCPU_8'
+
