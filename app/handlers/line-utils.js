@@ -29,10 +29,7 @@ const exec = (context) => check(context) && (
       console.log('context:', context)
       if(context.event.message.text.includes('myid')) {
         context.pushText(context.userId, []);
-      }else {
-        context.pushText('Line commands has incorrect', []);
       }
-      
     } catch (err) {
       context.pushError(err);
     }
