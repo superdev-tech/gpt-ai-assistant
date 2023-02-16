@@ -34,6 +34,7 @@ class Context {
    * @param {Event} event
    */
   constructor(event) {
+    console.log({event})
     this.event = event;
   }
 
