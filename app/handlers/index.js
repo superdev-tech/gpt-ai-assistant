@@ -10,10 +10,10 @@ import reportHandler from './report.js';
 import retryHandler from './retry.js';
 import talkHandler from './talk.js';
 import versionHandler from './version.js';
-import lineUtilsHandler from './line-utils.js';
+// import lineUtilsHandler from './line-utils.js';
 
 export {
-  lineUtilsHandler,
+  // lineUtilsHandler,
   activateHandler,
   commandHandler,
   continueHandler,

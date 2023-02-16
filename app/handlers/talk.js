@@ -27,7 +27,7 @@ const exec = (context) => check(context) && (
     try {
 
       if (!config.LINE_USERS_WHITELIST.includes(context.userId)) {
-        throw new Error('Unauthorized, you are not on the whitelist.');
+        throw new Error(`Unauthorized, you are not on the whitelist, please call admin (userId: ${context.userId})`);
       }
 
       const { text, isFinishReasonStop } = await generateCompletion({ prompt: prompt.toString() });

@@ -13,7 +13,7 @@ import {
   talkHandler,
   versionHandler,
 
-  lineUtilsHandler,
+  // lineUtilsHandler,
 } from './handlers/index.js';
 import Context from './context.js';
 import Event from './event.js';
@@ -24,7 +24,7 @@ import Event from './event.js';
  */
 const handleContext = async (context) => (
   activateHandler(context)
-  || lineUtilsHandler(context)
+  // || lineUtilsHandler(context)
   || commandHandler(context)
   || continueHandler(context)
   || deactivateHandler(context)
