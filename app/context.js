@@ -34,7 +34,6 @@ class Context {
    * @param {Event} event
    */
   constructor(event) {
-    console.log({event})
     this.event = event;
   }
 
@@ -101,6 +100,10 @@ class Context {
     if (this.event.isGroup && !sources[this.groupId] && groups.length >= config.APP_MAX_GROUPS) {
       throw new Error(t('__ERROR_MAX_GROUPS_REACHED'));
     }
+
+    console.log('validate')
+    console.log('users:', users)
+    console.log('groups:', groups)
     if (!sources[this.userId] && users.length >= config.APP_MAX_USERS) {
       throw new Error(t('__ERROR_MAX_USERS_REACHED'));
     }

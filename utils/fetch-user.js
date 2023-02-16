@@ -21,6 +21,7 @@ const fetchUser = async (userId) => {
   if (config.APP_ENV !== 'production') return new User(mockUsers[userId]);
   try {
     const { data } = await fetchProfile({ userId });
+    console.log('fetchUser:', data)
     return new User(data);
   } catch {
     return new User({ displayName: t('__USER_DISPLAY_NAME_SOMEONE') });

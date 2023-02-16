@@ -35,6 +35,8 @@ steps:
       - APP_PORT=$_APP_PORT
       - --build-arg
       - OPENAI_TIMEOUT=$_OPENAI_TIMEOUT
+      - --build-arg
+      - LINE_TIMEOUT=$_LINE_TIMEOUT
 
   # Deploy container image to Cloud Run
   - id: 'deploy_registry_to_cloudrun'
